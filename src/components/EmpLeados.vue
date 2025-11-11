@@ -2,21 +2,23 @@
   <div class="container-fluid my-1 p-3 border rounded-3 shadow-sm bg-light">
     <!-- Título principal -->
     <h4
-      class="mb-2 text-center my-2 bg-`primary-subtle border bg-primary bg-opacity-25 text-primary rounded py-1"
+      class="text-center mx-2 my-1 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
     >
-      Lista de Empleados
+      <i class="bi bi-person-gear"></i>Lista de Empleados
     </h4>
 
     <!-- Botón para limpiar formulario -->
-    <button
-      type="button"
-      class="btn border border-primary border-2 rounded-0 text-primary shadow-none"
-      style="--bs-btn-hover-bg: var(--bs-primary-bg-subtle)"
-      @click="limpiarPagina"
-      title="Limpiar formulario"
-    >
-      <i class="bi bi-arrow-counterclockwise"></i>
-    </button>
+    <div class="d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn border border-primary border-2 rounded-0 text-primary shadow-none mt-2 me-2"
+        style="--bs-btn-hover-bg: var(--bs-primary-bg-subtle)"
+        @click="limpiarPagina"
+        title="Limpiar formulario"
+      >
+        <i class="bi bi-arrow-counterclockwise"></i>
+      </button>
+    </div>
 
     <!-- Formulario para añadir o modificar empleados -->
     <form @submit.prevent="agregarEmpleado" class="mb-4">
@@ -102,8 +104,8 @@
       </thead>
       <tbody>
         <tr v-for="empleado in empleados" :key="empleado.id">
-          <td class="text-center">{{ empleado.nombre }}</td>
-          <td class="text-center">{{ empleado.puesto }}</td>
+          <td>{{ empleado.nombre }}</td>
+          <td>{{ empleado.puesto }}</td>
           <td class="text-center">{{ empleado.email }}</td>
           <td class="align-middle text-center">
             <!-- Botón para eliminar un empleado -->
