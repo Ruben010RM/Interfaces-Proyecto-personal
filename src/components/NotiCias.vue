@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid my-3">
     <h4
-      class="text-center mb-4 my-2 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
+      class="text-center mb-4 my-2 bg-primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
     >
       <i class="bi bi-newspaper me-2"></i>Noticias motor
     </h4>
@@ -52,19 +52,21 @@
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
               <div class="d-flex justify-content-between align-items-start">
-                <h5 class="card-title">{{ noticia.titulo }}</h5>
-                <small class="text-muted">{{
-                  formatearFecha(noticia.fecha)
-                }}</small>
+                <h5 class="card-title flex-grow-1">{{ noticia.titulo }}</h5>
 
-                <!-- Botón eliminar -->
-                <button
-                  class="btn btn-outline-danger btn-sm"
-                  @click="eliminarNoticia(noticia.id)"
-                  title="Eliminar noticia"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
+                <div class="d-flex flex-column align-items-end ms-3">
+                  <small class="text-muted texto-fecha">{{
+                    formatearFecha(noticia.fecha)
+                  }}</small>
+
+                  <button
+                    class="btn btn-outline-danger btn-sm mt-2"
+                    @click="eliminarNoticia(noticia.id)"
+                    title="Eliminar noticia"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
               </div>
 
               <p class="card-text text-muted mt-2">
@@ -152,7 +154,7 @@ function agregarNoticia() {
   try {
     axios.post("http://localhost:3000/noticias", nueva).then((res) => res.data);
   } catch (error) {
-    console.error("Fallo al añadir la nueva notivcia a la bbdd", error);
+    console.error("Fallo al añadir la nueva noticia a la bbdd", error);
     throw error;
   }
 
@@ -177,5 +179,9 @@ async function eliminarNoticia(id) {
   transition: all 0.3s ease;
   overflow: hidden;
   background-color: rgba(161, 192, 209, 0.137);
+}
+.texto-fecha {
+  min-width: 80px;
+  text-align: right;
 }
 </style>

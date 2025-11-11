@@ -290,14 +290,14 @@
     },
     {
       "dni": "12345678Z",
-      "fecha_alta": "30/09/2022",
+      "fecha_alta": "2022-09-30",
       "nombre": "Laura",
       "apellidos": "Gómez Fernández",
       "email": "laura.gomez@example.com",
       "movil": "645678902",
       "direccion": "Calle Sánchez 18",
       "provincia": "Valencia",
-      "municipio": "Xàtiva",
+      "municipio": "Torrella",
       "historico": true,
       "lopd": true,
       "tipo_cliente": "empresa",
@@ -361,7 +361,7 @@
       "provincia": "Barcelona",
       "municipio": "Ullastrell",
       "fecha_alta": "",
-      "historico": false,
+      "historico": true,
       "tipo_cliente": "particular",
       "lopd": true,
       "password": "",
@@ -429,7 +429,7 @@
       "nombre": "Lucía Fernández",
       "puesto": "Marketing",
       "email": "lucia.fernandez@empresa.com",
-      "historico": false
+      "historico": true
     },
     {
       "id": "4",

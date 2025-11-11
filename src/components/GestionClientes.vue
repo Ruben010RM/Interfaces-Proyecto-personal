@@ -236,7 +236,7 @@
         <input
           type="checkbox"
           id="avisolegal"
-          v-model="avisoLegal"
+          v-model="nuevoCliente.lopd"
           class="form-check-input"
         />
         <span class="form-check-label mb-0">
@@ -249,7 +249,7 @@
         <button
           type="submit"
           class="btn btn-primary border-0 shadow-none rounded-0"
-          :disabled="!avisoLegal"
+          :disabled="!nuevoCliente.lopd"
         >
           {{ editando ? "Modificar Cliente" : "Guardar Cliente" }}
         </button>
@@ -612,9 +612,12 @@ const editarCliente = (movil) => {
   if (fechaFormateada && fechaFormateada.includes("/")) {
     fechaFormateada = formatearFechaParaInput(fechaFormateada);
   }
-  nuevoCliente.value = { ...cliente, fecha_alta: fechaFormateada };
+
+  nuevoCliente.value = { ...cliente, fecha_alta: fechaFormateada }; //Cargamos todos los datos del cliente
+  nuevoCliente.value.lopd = false; //Para que tenga que marcar el checkbox de nuevo
   editando.value = true;
   filtrarMunicipios();
+  nuevoCliente.value.municipio = cliente.municipio;
   clienteEditandoId.value = cliente.id;
 };
 

@@ -66,12 +66,15 @@
           />
         </div>
       </div>
-      <div>
+      <div
+        class="form-switch form-check d-flex justify-content-end align-items-center mt-2 me-2"
+      >
         <label for="historico"
-          >Historico:
+          >Historico
           <input
             type="checkbox"
             v-model="mostrarHistorico"
+            class="form-check-input"
             @change="cargarEmpleados"
         /></label>
       </div>
@@ -86,20 +89,23 @@
     </form>
 
     <!-- Tabla que muestra la lista de empleados cargados -->
-    <table class="table table-striped table-responsive">
-      <thead class="thead-dark">
+    <table
+      class="table table-bordered table-striped table-hover table-sm align-middle table-responsive"
+    >
+      <thead class="thead-dark table-primary text-center">
         <tr>
           <th>Nombre</th>
           <th>Puesto</th>
           <th>Email</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="empleado in empleados" :key="empleado.id">
-          <td>{{ empleado.nombre }}</td>
-          <td>{{ empleado.puesto }}</td>
-          <td>{{ empleado.email }}</td>
-          <td>
+          <td class="text-center">{{ empleado.nombre }}</td>
+          <td class="text-center">{{ empleado.puesto }}</td>
+          <td class="text-center">{{ empleado.email }}</td>
+          <td class="align-middle text-center">
             <!-- Botón para eliminar un empleado -->
             <button
               class="btn btn-danger btn-sm border-0 ms-4 me-2 shadow-none rounded-0"
@@ -114,6 +120,14 @@
               @click="editarEmpleado(empleado.id)"
             >
               <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              v-if="empleado.historico === true"
+              @click="activarEmpleado(empleado)"
+              class="btn btn-secondary btn-sm ms-2 border-0 shadow-none rounded-0"
+              title="Activar cliente"
+            >
+              <i class="bi bi-unlock"></i>
             </button>
           </td>
         </tr>
@@ -329,6 +343,51 @@ const capitalizarTexto = (propiedad) => {
         palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()
     )
     .join(" ");
+};
+
+///////////////Función para activar cliente (poner historico en true)
+const activarEmpleado = async (empleado) => {
+  const confirmacion = await Swal.fire({
+    title: `¿Activar empleado ${empleado.nombre}?`,
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Activar",
+    cancelButtonText: "Cancelar",
+  });
+
+  if (!confirmacion.isConfirmed) return;
+
+  try {
+    // Crear una copia del cliente con historico en true
+    const empleadoActivado = { ...empleado, historico: false };
+
+    // Llamar a la API para actualizar
+    const actualizado = await updateEmpleado(empleado.id, empleadoActivado);
+
+    // Actualizar la lista local (opcional, también puedes volver a cargar todo)
+    const index = empleados.value.findIndex((e) => e.id === empleado.id);
+    if (index !== -1) {
+      empleados.value[index] = actualizado;
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Empleado reactivado",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
+    // Recargar lista actualizada
+    await cargarEmpleados();
+  } catch (error) {
+    console.error("Error al reactivar empleado:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error al activar cliente",
+      text: "Por favor, intenta de nuevo.",
+      timer: 1500,
+    });
+  }
 };
 </script>
 
