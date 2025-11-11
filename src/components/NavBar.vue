@@ -34,12 +34,15 @@
             <router-link to="/noticias" class="nav-link">Noticias</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/modelos" class="nav-link">Modelos</router-link>
+            <router-link to="/coches" class="nav-link">Coches</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/empleados" class="nav-link"
               >Empleados</router-link
             >
+          </li>
+          <li class="nav-item">
+            <router-link to="/modelos" class="nav-link">Modelos</router-link>
           </li>
         </ul>
       </div>

@@ -4,7 +4,7 @@
     <h4
       class="text-center mx-2 my-1 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
     >
-      <i class="bi bi-person-gear"></i>Lista de Empleados
+      <i class="bi bi-person-gear me-2"></i>Lista de Empleados
     </h4>
 
     <!-- Botón para limpiar formulario -->

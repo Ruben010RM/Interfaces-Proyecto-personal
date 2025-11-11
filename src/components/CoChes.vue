@@ -3,7 +3,7 @@
     <h4
       class="mb-3 text-center bg-`primary-subtle border bg-primary bg-opacity-25 text-primary rounded"
     >
-      Venta de Coches
+      <i class="bi bi-car-front me-2"></i>Venta de Coches
     </h4>
     <div class="row">
       <div

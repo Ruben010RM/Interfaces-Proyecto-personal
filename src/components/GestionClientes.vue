@@ -5,7 +5,7 @@
     <h4
       class="text-center mx-2 my-1 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
     >
-      <i class="bi bi-person"></i>Registro de Clientes
+      <i class="bi bi-person me-2"></i>Registro de Clientes
     </h4>
     <!-- Formulario -->
     <form @submit.prevent="guardarCliente" class="mb-4">
