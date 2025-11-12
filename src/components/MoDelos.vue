@@ -13,7 +13,9 @@
       <!-- FILA: Tipo, Marca, Modelo -->
       <div class="row g-3 align-items-center mt-1">
         <div class="col-12 col-md-4 d-flex align-items-center">
-          <label class="form-label mb-0 me-3 text-nowrap">Tipo:</label>
+          <label class="form-label mb-0 me-3 text-nowrap fw-medium"
+            >Tipo:</label
+          >
           <div class="d-flex align-items-center">
             <div
               class="form-check form-check-inline"
@@ -34,7 +36,9 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="matricula" class="form-label mb-0 me-3 text-nowrap"
+          <label
+            for="matricula"
+            class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Matricula:</label
           >
           <input
@@ -46,7 +50,7 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="marca" class="form-label mb-0 me-3 text-nowrap"
+          <label for="marca" class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Marca:</label
           >
           <input
@@ -59,7 +63,7 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="modelo" class="form-label mb-0 me-3 text-nowrap"
+          <label for="modelo" class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Modelo:</label
           >
           <input
@@ -72,7 +76,7 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="anio" class="form-label mb-0 me-3 text-nowrap"
+          <label for="anio" class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Año:</label
           >
           <input
@@ -88,7 +92,9 @@
       <!-- FILA: Kilómetros, Precio, Combustible, Transmisión -->
       <div class="row g-3 align-items-center mt-2">
         <div class="col-12 col-md-3 d-flex align-items-center">
-          <label for="kilometros" class="form-label mb-0 me-3 text-nowrap"
+          <label
+            for="kilometros"
+            class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Kilómetros:</label
           >
           <input
@@ -101,7 +107,7 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="precio" class="form-label mb-0 me-3 text-nowrap"
+          <label for="precio" class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Precio (€):</label
           >
           <input
@@ -114,7 +120,9 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="combustible" class="form-label mb-0 me-3 text-nowrap"
+          <label
+            for="combustible"
+            class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Combustible:</label
           >
           <select
@@ -133,7 +141,9 @@
         </div>
 
         <div class="col-12 col-md-3 d-flex align-items-center">
-          <label for="transmision" class="form-label mb-0 me-3 text-nowrap"
+          <label
+            for="transmision"
+            class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Transmisión:</label
           >
           <div class="form-check form-check-inline">
@@ -163,7 +173,9 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label for="potencia" class="form-label mb-0 me-3 text-nowrap"
+          <label
+            for="potencia"
+            class="form-label mb-0 me-3 text-nowrap fw-medium"
             >Potencia (CV):</label
           >
           <input
@@ -175,7 +187,9 @@
         </div>
 
         <div class="col-12 col-md-2 d-flex align-items-center">
-          <label class="orm-label mb-0 me-3 text-nowrap">Estado:</label>
+          <label class="orm-label mb-0 me-3 text-nowrap fw-medium"
+            >Estado:</label
+          >
           <select
             v-model="vehiculo.estado"
             class="form-select d-inline-block w-auto rounded shadow-none border"
@@ -190,7 +204,9 @@
       <!-- FILA: Descripción -->
       <div class="row g-2 mt-3">
         <div class="col">
-          <label for="descripcion" class="form-label">Descripción:</label>
+          <label for="descripcion" class="form-label fw-medium"
+            >Descripción:</label
+          >
           <textarea
             id="descripcion"
             v-model="vehiculo.descripcion"
@@ -206,7 +222,7 @@
       <!-- FILA: Ubicación -->
       <div class="row g-3 align-items-center mt-3">
         <div class="col-12 col-md-4">
-          <label for="provincia" class="form-label">Provincia:</label>
+          <label for="provincia" class="form-label fw-medium">Provincia:</label>
           <select
             id="provincia"
             v-model="vehiculo.ubicacion.provincia"
@@ -221,7 +237,7 @@
         </div>
 
         <div class="col-12 col-md-4">
-          <label for="ciudad" class="form-label">Ciudad:</label>
+          <label for="ciudad" class="form-label fw-medium">Ciudad:</label>
           <select
             id="ciudad"
             v-model="vehiculo.ubicacion.ciudad"
@@ -239,7 +255,7 @@
         </div>
 
         <div class="col-12 col-md-4">
-          <label for="fecha_publicacion" class="form-label"
+          <label for="fecha_publicacion" class="form-label fw-medium"
             >Fecha Publicación:</label
           >
           <input
@@ -254,7 +270,7 @@
       <!-- FILA: Contacto -->
       <div class="row g-3 align-items-center mt-3">
         <div class="col-12 col-md-4">
-          <label for="contacto_nombre" class="form-label"
+          <label for="contacto_nombre " class="form-label fw-medium"
             >Nombre Contacto:</label
           >
           <input
@@ -265,7 +281,9 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <label for="contacto_telefono" class="form-label">Teléfono:</label>
+          <label for="contacto_telefono" class="form-label fw-medium"
+            >Teléfono:</label
+          >
           <input
             type="tel"
             id="contacto_telefono"
@@ -274,7 +292,9 @@
           />
         </div>
         <div class="col-12 col-md-4">
-          <label for="contacto_email" class="form-label">Email:</label>
+          <label for="contacto_email" class="form-label fw-medium"
+            >Email:</label
+          >
           <input
             type="email"
             id="contacto_email"
