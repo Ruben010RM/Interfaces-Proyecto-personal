@@ -66,7 +66,9 @@
           />
         </div>
         <div class="col-md-2">
-          <label for="email" class="form-label fw-medium">Email</label>
+          <label for="fechaAlta" class="form-label fw-medium"
+            >Fecha de Alta</label
+          >
           <input
             type="date"
             id="email"
