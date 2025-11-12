@@ -410,35 +410,47 @@
       "nombre": "Ana Pérez",
       "puesto": "Desarrollador/a",
       "email": "ana.perez@empresa.cod",
-      "historico": false
+      "historico": false,
+      "fechaAlta": "2024-10-13"
     },
     {
       "id": "2",
       "nombre": "Carlos Gómez",
       "puesto": "Diseñador/a",
       "email": "carlos.gomez@empresa.com",
-      "historico": false
+      "historico": false,
+      "fechaAlta": "2024-10-15"
     },
     {
       "id": "3",
       "nombre": "Lucía Fernández",
       "puesto": "Marketing",
       "email": "lucia.fernandez@empresa.com",
-      "historico": true
+      "historico": true,
+      "fechaAlta": "2018-06-30"
     },
     {
       "id": "4",
       "nombre": "Juan Martínez",
       "puesto": "Gerente",
       "email": "juan.martinez@empresa.com",
-      "historico": false
+      "historico": false,
+      "fechaAlta": "2021-02-28"
     },
     {
       "id": "5",
       "nombre": "Berto Martínez",
       "puesto": "Diseñador/a",
       "email": "juan.martinez@empresa.com",
-      "historico": false
+      "historico": false,
+      "fechaAlta": "2022-09-15"
+    },
+    {
+      "id": "5",
+      "nombre": "Rubén Rodríguez",
+      "email": "rubenrm.contact@gmail.com",
+      "puesto": "Desarrollador/a",
+      "fechaAlta": "2025-11-26"
     }
   ],
   "coches": [

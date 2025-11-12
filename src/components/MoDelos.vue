@@ -6,43 +6,29 @@
       <i class="bi bi-car-front me-2"></i>Registro de Vehículos
     </h4>
 
-    <form @submit.prevent="guardarVehiculo" class="mb-2 mt-1">
+    <form
+      @submit.prevent="guardarVehiculo"
+      class="p-4 bg-light rounded-3 border shadow-sm mb-4"
+    >
       <!-- FILA: Tipo, Marca, Modelo -->
       <div class="row g-3 align-items-center mt-1">
-        <div class="col-12 col-md-3 d-flex align-items-center">
+        <div class="col-12 col-md-4 d-flex align-items-center">
           <label class="form-label mb-0 me-3 text-nowrap">Tipo:</label>
           <div class="d-flex align-items-center">
-            <div class="form-check form-check-inline">
+            <div
+              class="form-check form-check-inline"
+              v-for="tipo in tiposVehiculo"
+            >
               <input
                 class="form-check-input"
                 type="radio"
                 id="tipo-coche"
-                value="coche"
+                :value="tipo"
                 v-model="vehiculo.tipo"
               />
-              <label class="form-check-label" for="tipo-coche">Coche</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                id="tipo-furgoneta"
-                value="furgoneta"
-                v-model="vehiculo.tipo"
-              />
-              <label class="form-check-label" for="tipo-furgoneta"
-                >Furgoneta</label
-              >
-            </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                id="tipo-moto"
-                value="moto"
-                v-model="vehiculo.tipo"
-              />
-              <label class="form-check-label" for="tipo-moto">Moto</label>
+              <label class="form-check-label" for="tipo-coche">{{
+                tipo
+              }}</label>
             </div>
           </div>
         </div>
@@ -72,7 +58,7 @@
           />
         </div>
 
-        <div class="col-12 col-md-3 d-flex align-items-center">
+        <div class="col-12 col-md-2 d-flex align-items-center">
           <label for="modelo" class="form-label mb-0 me-3 text-nowrap"
             >Modelo:</label
           >
@@ -214,7 +200,7 @@
           ></textarea>
         </div>
       </div>
-      <h6 class="text-center bg-primary-subtle py-1 fw-semibold">
+      <h6 class="text-center bg-primary-subtle py-1 fw-semibold rounded">
         <i class="bi bi-person me-2"></i>Cliente Ubicación
       </h6>
       <!-- FILA: Ubicación -->

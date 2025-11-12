@@ -36,7 +36,7 @@
           />
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
           <label for="puesto" class="form-label fw-medium">Puesto</label>
           <select
             id="puesto"
@@ -55,12 +55,22 @@
           </select>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
           <label for="email" class="form-label fw-medium">Email</label>
           <input
             type="email"
             id="email"
             v-model="nuevoEmpleado.email"
+            class="form-control form-control-sm shadow-none"
+            required
+          />
+        </div>
+        <div class="col-md-2">
+          <label for="email" class="form-label fw-medium">Email</label>
+          <input
+            type="date"
+            id="email"
+            v-model="nuevoEmpleado.fechaAlta"
             class="form-control form-control-sm shadow-none"
             required
           />
@@ -101,6 +111,7 @@
             <th>Nombre</th>
             <th>Puesto</th>
             <th>Email</th>
+            <th>Fecha de Alta</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -110,6 +121,7 @@
             <td>{{ empleado.nombre }}</td>
             <td>{{ empleado.puesto }}</td>
             <td>{{ empleado.email }}</td>
+            <td>{{ empleado.fechaAlta }}</td>
             <td class="align-middle">
               <button
                 class="btn btn-sm btn-danger me-2 shadow-sm"
@@ -166,7 +178,7 @@ const opcionesPuesto = [
 
 /* Variables reactivas */
 const empleados = ref([]); // Lista de empleados
-const nuevoEmpleado = ref({ nombre: "", email: "", puesto: "" }); // Datos del formulario
+const nuevoEmpleado = ref({ nombre: "", email: "", puesto: "", fechaAlta: "" }); // Datos del formulario
 const editando = ref(false); // Indica si estamos modificando un empleado
 const empleadoEditando = ref(""); // ID del empleado que se edita actualmente
 const mostrarHistorico = ref(false);
@@ -262,6 +274,7 @@ async function agregarEmpleado() {
       nombre: nuevoEmpleado.value.nombre,
       email: nuevoEmpleado.value.email,
       puesto: nuevoEmpleado.value.puesto,
+      fechaAlta: nuevoEmpleado.value.fechaAlta,
     };
     try {
       // Llamada API para guardar empleado nuevo
@@ -336,6 +349,7 @@ function limpiarPagina() {
   nuevoEmpleado.value.email = "";
   nuevoEmpleado.value.nombre = "";
   nuevoEmpleado.value.puesto = "";
+  nuevoEmpleado.value.fechaAlta = "";
   editando.value = false;
   empleadoEditando.value = "";
 }
