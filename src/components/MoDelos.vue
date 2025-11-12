@@ -20,7 +20,7 @@
               v-for="tipo in tiposVehiculo"
             >
               <input
-                class="form-check-input"
+                class="form-check-input text"
                 type="radio"
                 id="tipo-coche"
                 :value="tipo"
@@ -296,7 +296,7 @@
             </button>
             <button
               type="submit"
-              class="btn btn-secondary rounded border shadow-none px-4 py-2 ms-2"
+              class="btn btn-outline-danger rounded border-danger shadow-none px-4 py-2 ms-2"
             >
               Eliminar
             </button>

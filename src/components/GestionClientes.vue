@@ -14,7 +14,7 @@
       <div class="mb-3 row align-items-center mt-3">
         <!-- Columna DNI -->
         <div class="col-md-4 d-flex align-items-center">
-          <label for="dni" class="form-label mb-0 w-25">DNI: </label>
+          <label for="dni" class="form-label mb-0 w-25 fw-medium">DNI: </label>
           <div class="flex-grow-1 d-flex">
             <input
               type="text"
@@ -45,7 +45,7 @@
         <div
           class="col-md-2 ms-4 d-flex align-items-center justify-content-end"
         >
-          <label for="fecha_alta" class="form-label me-2 mb-0 text-nowrap"
+          <label for="fecha_alta" class="form-label me-2 mb-0 text-nowrap fw-medium"
             >Fecha de Alta:</label
           >
           <input
@@ -61,7 +61,7 @@
         <div
           class="col-md-3 ms-5 d-flex align-items-center justify-content-center border rounded"
         >
-          <label for="tipo_cliente" class="form-label me-2 mb-0 text-nowrap"
+          <label for="tipo_cliente" class="form-label me-2 mb-0 text-nowrap fw-medium me-3"
             >Tipo de Cliente:</label
           ><input
             type="radio"
@@ -96,7 +96,7 @@
       <div class="mb-3 row g-3 align-items-center">
         <!-- Nombre -->
         <div class="col-md-5 d-flex align-items-center">
-          <label for="nombre" class="form-label mb-0 text-nowrap w-25"
+          <label for="nombre" class="form-label mb-0 text-nowrap w-25 fw-medium"
             >Nombre:</label
           >
           <input
@@ -111,7 +111,7 @@
 
         <!-- Apellidos -->
         <div class="col-md-6 d-flex align-items-center ms-5">
-          <label for="apellidos" class="form-label me-4 mb-0 text-nowrap"
+          <label for="apellidos" class="form-label me-4 mb-0 text-nowrap fw-medium"
             >Apellidos:</label
           >
           <input
@@ -129,7 +129,7 @@
       <div class="mb-3 row g-3 align-items-center">
         <!-- Email -->
         <div class="col-md-5 d-flex align-items-center">
-          <label for="email" class="form-label mb-0 text-nowrap w-25"
+          <label for="email" class="form-label mb-0 text-nowrap w-25 fw-medium"
             >Email:</label
           >
           <div class="d-flex flex-column w-100">
@@ -150,7 +150,7 @@
 
         <!-- Móvil -->
         <div class="col-md-3 d-flex align-items-center gap-4">
-          <label for="movil" class="form-label me-4 ms-5 mb-0 text-nowrap"
+          <label for="movil" class="form-label me-4 ms-5 mb-0 text-nowrap fw-medium"
             >Móvil:</label
           >
           <input
@@ -168,7 +168,7 @@
       <div class="mb-3 row g-3 align-items-center">
         <!-- Dirección -->
         <div class="col-md-5 d-flex align-items-center">
-          <label for="direccion" class="form-label mb-0 w-25 text-nowrap"
+          <label for="direccion" class="form-label mb-0 w-25 text-nowrap fw-medium"
             >Dirección:</label
           >
           <input
@@ -182,7 +182,7 @@
 
         <!-- Provincia -->
         <div class="col-md-3 d-flex align-items-center gap-3">
-          <label for="provincia" class="form-label me-2 ms-5 mb-0 text-nowrap"
+          <label for="provincia" class="form-label me-2 ms-5 mb-0 text-nowrap fw-medium"
             >Provincia:</label
           >
           <select
@@ -200,7 +200,7 @@
 
         <!-- Municipio -->
         <div class="col-md-3 d-flex align-items-center">
-          <label for="municipio" class="form-label me-2 ms-4 mb-0 text-nowrap"
+          <label for="municipio" class="form-label me-2 ms-4 mb-0 text-nowrap fw-medium"
             >Municipio:</label
           >
           <select
@@ -287,7 +287,7 @@
             <td class="align-middle text-center">
               <button
                 @click="eliminarCliente(cliente.movil)"
-                class="btn btn-danger btn-sm border-0 ms-4 me-2 shadow-none rounded-0"
+                class="btn btn-danger btn-sm border-0 ms-4 me-2 shadow-none rounded"
                 title="Eliminar cliente"
                 arial-label="Eliminar cliente"
               >
@@ -295,7 +295,7 @@
               </button>
               <button
                 @click="editarCliente(cliente.movil)"
-                class="btn btn-warning btn-sm border-0 dow-none rounded-0"
+                class="btn btn-warning btn-sm border-0 dow-none rounded"
                 title="Editar cliente"
                 aria-label="Editar cliente"
               >
@@ -304,7 +304,7 @@
               <button
                 v-if="cliente.historico === false"
                 @click="activarCliente(cliente)"
-                class="btn btn-secondary btn-sm ms-2 border-0 shadow-none rounded-0"
+                class="btn btn-secondary btn-sm ms-2 border-0 shadow-none rounded"
                 title="Activar cliente"
               >
                 <i class="bi bi-unlock"></i>
