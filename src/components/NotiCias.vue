@@ -1,41 +1,48 @@
 <template>
-  <div class="container-fluid my-3">
-    <h4
-      class="text-center mb-4 my-2 bg-primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
-    >
-      <i class="bi bi-newspaper me-2"></i>Noticias motor
+  <div class="container-fluid my-4 p-4 border rounded-4 shadow-lg bg-white">
+    <h4 class="text-center mb-4 fw-semibold text-primary border-bottom pb-2">
+      <i class="bi bi-newspaper me-2"></i>Noticias del Motor
     </h4>
 
     <!-- Formulario para agregar noticia -->
-    <div class="card mb-5 shadow-sm">
+    <div class="card mb-5 border-0 shadow-sm bg-light-subtle rounded-3">
       <div class="card-body">
-        <h5 class="card-title mb-3">Agregar nueva noticia</h5>
-        <form @submit.prevent="agregarNoticia">
+        <h5 class="card-title text-primary fw-semibold mb-3">
+          Agregar nueva noticia
+        </h5>
+        <form
+          @submit.prevent="agregarNoticia"
+          class="p-4 bg-light rounded-3 border shadow-sm mb-4"
+        >
           <div class="mb-3">
-            <label class="form-label">Título (máx. 128 caracteres)</label>
+            <label class="form-label fw-medium"
+              >Título (máx. 128 caracteres)</label
+            >
             <input
               v-model="nuevaNoticia.titulo"
               type="text"
-              class="form-control"
+              class="form-control form-control-sm shadow-none"
               placeholder="Máximo 128 caracteres"
               maxlength="128"
               required
             />
           </div>
           <div class="mb-3">
-            <label class="form-label">Contenido (máx. 256 caracteres)</label>
+            <label class="form-label fw-medium"
+              >Contenido (máx. 256 caracteres)</label
+            >
             <textarea
               v-model="nuevaNoticia.contenido"
-              class="form-control"
+              class="form-control form-control-sm shadow-none"
               rows="3"
               placeholder="Máximo 256 caracteres"
               maxlength="256"
               required
             ></textarea>
           </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">
-              Publicar noticia
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary px-4 shadow-sm">
+              <i class="bi bi-send me-1"></i> Publicar noticia
             </button>
           </div>
         </form>
@@ -46,21 +53,25 @@
     <div class="row g-4 flex-column">
       <div class="col-12" v-for="noticia in noticias" :key="noticia.id">
         <div
-          class="card shadow-sm h-100"
-          :class="{ 'border-primary': noticiaExpandida === noticia.id }"
+          class="card border-0 shadow-sm rounded-3 h-100 bg-body-tertiary"
+          :class="{
+            'border border-2 border-primary': noticiaExpandida === noticia.id,
+          }"
         >
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <div class="d-flex justify-content-between align-items-start">
-                <h5 class="card-title flex-grow-1">{{ noticia.titulo }}</h5>
-
-                <div class="d-flex flex-column align-items-end ms-3">
-                  <small class="text-muted texto-fecha">{{
-                    formatearFecha(noticia.fecha)
-                  }}</small>
-
+              <div
+                class="d-flex justify-content-between align-items-start mb-2"
+              >
+                <h5 class="card-title text-dark fw-semibold mb-0 flex-grow-1">
+                  {{ noticia.titulo }}
+                </h5>
+                <div class="d-flex flex-column text-end ms-3">
+                  <small class="text-muted texto-fecha">
+                    {{ formatearFecha(noticia.fecha) }}
+                  </small>
                   <button
-                    class="btn btn-outline-danger btn-sm mt-2"
+                    class="btn btn-outline-danger btn-sm mt-2 shadow-none"
                     @click="eliminarNoticia(noticia.id)"
                     title="Eliminar noticia"
                   >
@@ -68,8 +79,7 @@
                   </button>
                 </div>
               </div>
-
-              <p class="card-text text-muted mt-2">
+              <p class="card-text text-secondary lh-sm mt-2">
                 {{
                   noticiaExpandida === noticia.id
                     ? contenidoLimitado(noticia.contenido)
@@ -80,7 +90,7 @@
 
             <div class="text-end mt-2">
               <button
-                class="btn btn-outline-primary btn-sm"
+                class="btn btn-outline-primary btn-sm shadow-none"
                 @click="toggleExpand(noticia.id)"
               >
                 {{
@@ -177,11 +187,11 @@ async function eliminarNoticia(id) {
 <style scoped>
 .card {
   transition: all 0.3s ease;
-  overflow: hidden;
-  background-color: rgba(161, 192, 209, 0.137);
+  background-color: rgba(240, 248, 255, 0.35);
 }
 .texto-fecha {
-  min-width: 80px;
+  min-width: 90px;
   text-align: right;
+  font-size: 0.85rem;
 }
 </style>

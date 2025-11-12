@@ -1,14 +1,15 @@
 <template>
-  <div
-    class="container-fluid my-1 p-3 border rounded-3 shadow-sm min-vh-75 bg-light"
-  >
+  <div class="container-fluid my-4 p-4 border rounded-4 shadow-lg bg-white">
     <h4
-      class="text-center mx-2 my-1 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
+      class="text-center mb-4 fw-semibold text-primary border-bottom pb-2 mt-2"
     >
       <i class="bi bi-person me-2"></i>Registro de Clientes
     </h4>
     <!-- Formulario -->
-    <form @submit.prevent="guardarCliente" class="mb-4">
+    <form
+      @submit.prevent="guardarCliente"
+      class="p-4 bg-light rounded-3 border shadow-sm mb-4"
+    >
       <!-- DNI con validación visual -->
       <div class="mb-3 row align-items-center mt-3">
         <!-- Columna DNI -->
@@ -29,7 +30,7 @@
             />
             <button
               type="button"
-              class="btn btn-primary shadow-none rounded-0"
+              class="btn btn-primary shadow-none rounded-2"
               @click="buscarClientePorDNI(nuevoCliente.dni)"
             >
               <i class="bi bi-search"></i>
@@ -83,10 +84,10 @@
         >
           <button
             type="button"
-            class="btn btn-outline-primary btn-sm rounded-0 border-1 shadow-none"
+            class="btn btn-outline-primary rounded-2 border-1 shadow-none"
             @click="resetForm"
           >
-            <i class="bi bi-arrow-clockwise"></i>
+            <i class="bi bi-arrow-counterclockwise"></i>
           </button>
         </div>
       </div>
@@ -335,7 +336,6 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import provmuniData from "@/data/provmuni.json";
 import { ref, onMounted, computed } from "vue";
@@ -360,7 +360,7 @@ const nuevoCliente = ref({
   provincia: "",
   municipio: "",
   fecha_alta: "",
-  tipo_cliente: "",
+  tipoCliente: "",
   historico: true,
   lopd: false,
 });
@@ -507,7 +507,7 @@ const guardarCliente = async () => {
       provincia: "",
       municipio: "",
       fecha_alta: "",
-      tipo_cliente: "",
+      tipoCliente: "",
       historico: true,
       lopd: false,
     };
@@ -521,7 +521,7 @@ const guardarCliente = async () => {
     emailValido.value = true;
 
     // Refrescar lista completa (opcional)
-    clientes.value = await getClientes();
+    clientes.value = await getClientes(mostrarHistorico.value);
   } catch (error) {
     console.error("Error al guardar cliente:", error);
     Swal.fire({
@@ -543,7 +543,7 @@ onMounted(async () => {
 // Funcion Eliminar Cliente con patch (histórico a false)
 const eliminarCliente = async (movil) => {
   // Refrescar lista desde la API
-  clientes.value = await getClientes();
+  clientes.value = await getClientes(mostrarHistorico.value);
   // Buscar cliente completo (que incluye el ID)
   const clienteAEliminar = clientes.value.find(
     (cliente) => cliente.movil === movil
@@ -574,7 +574,7 @@ const eliminarCliente = async (movil) => {
   // Si confirma, eliminar cliente usando la API y movil como ID
   await deleteCliente(clienteAEliminar.id);
   // Refrescar la lista desde la "API"
-  clientes.value = await getClientes();
+  clientes.value = await getClientes(mostrarHistorico.value);
 
   Swal.fire({
     icon: "success",
@@ -740,10 +740,10 @@ const emailValido = ref(true);
 // conversor fecha
 const formatearFechaParaInput = (fecha) => {
   if (!fecha) return "";
-  const partes = fecha.split("/");
+  const partes = fecha.split("-");
   if (partes.length !== 3) return "";
   // partes = [dd, mm, yyyy]
-  return `${partes[2]}-${partes[1].padStart(2, "0")}-${partes[0].padStart(
+  return `${partes[0]}-${partes[1].padStart(2, "0")}-${partes[2].padStart(
     2,
     "0"
   )}`;
@@ -832,7 +832,6 @@ const resetForm = () => {
   movilValido.value = true;
   emailValido.value = true;
   // Resetear aceptación de términos
-  acepta.value = false;
 };
 
 // Provincias y municipios

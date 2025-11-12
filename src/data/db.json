@@ -11,14 +11,14 @@
       "provincia": "Madrid",
       "municipio": "Alcalá de Henares",
       "historico": false,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "empresa",
       "lopd": true,
       "password": "",
       "id": "eec1"
     },
     {
       "dni": "X3456789G",
-      "fecha_alta": "05/07/2023",
+      "fecha_alta": "2025-11-12",
       "nombre": "José",
       "apellidos": "Martín Pérez",
       "email": "jose.martin@example.com",
@@ -27,14 +27,14 @@
       "provincia": "Barcelona",
       "municipio": "Badalona",
       "historico": true,
-      "tipo_cliente": "empresa",
-      "lopd": false,
+      "tipoCliente": "empresa",
+      "lopd": true,
       "password": "",
       "id": "5d34"
     },
     {
       "dni": "45678912S",
-      "fecha_alta": "20/11/2021",
+      "fecha_alta": "2025-11-30",
       "nombre": "Ana",
       "apellidos": "García Gómez",
       "email": "ana.garcia@example.com",
@@ -43,7 +43,7 @@
       "provincia": "Sevilla",
       "municipio": "Utrera",
       "historico": false,
-      "tipo_cliente": "particular",
+      "tipoCliente": "empresa",
       "lopd": true,
       "password": "",
       "id": "24ea"
@@ -59,14 +59,14 @@
       "provincia": "Valencia",
       "municipio": "Torrent",
       "historico": true,
-      "tipo_cliente": "particular",
+      "tipoCliente": "particular",
       "lopd": true,
       "password": "",
       "id": "7e6b"
     },
     {
       "dni": "90123456A",
-      "fecha_alta": "27/06/2022",
+      "fecha_alta": "2014-12-10",
       "nombre": "María",
       "apellidos": "Fernández Martín",
       "email": "maria.fernandez@example.com",
@@ -75,8 +75,8 @@
       "provincia": "Málaga",
       "municipio": "Ronda",
       "historico": false,
-      "tipo_cliente": "particular",
-      "lopd": false,
+      "tipoCliente": "empresa",
+      "lopd": true,
       "password": "",
       "id": "fc34"
     },
@@ -91,7 +91,7 @@
       "provincia": "Zaragoza",
       "municipio": "Calatayud",
       "historico": true,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "empresa",
       "lopd": false,
       "password": "",
       "id": "41cd"
@@ -107,14 +107,14 @@
       "provincia": "Murcia",
       "municipio": "Cartagena",
       "historico": false,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "empresa",
       "lopd": true,
       "password": "",
       "id": "a7dd"
     },
     {
       "dni": "56789123F",
-      "fecha_alta": "11/01/2024",
+      "fecha_alta": "2025-11-22",
       "nombre": "Luis",
       "apellidos": "Martínez Fernández",
       "email": "luis.martinez@example.com",
@@ -123,14 +123,14 @@
       "provincia": "Granada",
       "municipio": "Motril",
       "historico": true,
-      "tipo_cliente": "particular",
+      "tipoCliente": "empresa",
       "lopd": true,
       "password": "",
       "id": "04c3"
     },
     {
       "dni": "23456789D",
-      "fecha_alta": "22/05/2022",
+      "fecha_alta": "2025-11-30",
       "nombre": "Isabel",
       "apellidos": "Gómez López",
       "email": "isabel.gomez@example.com",
@@ -139,14 +139,14 @@
       "provincia": "Cádiz",
       "municipio": "Chiclana de la Frontera",
       "historico": false,
-      "lopd": false,
-      "tipo_cliente": "particular",
+      "lopd": true,
+      "tipoCliente": "empresa",
       "password": "",
       "id": "287e"
     },
     {
       "dni": "67891234H",
-      "fecha_alta": "03/08/2023",
+      "fecha_alta": "2025-12-05",
       "nombre": "Carlos",
       "apellidos": "Martín García",
       "email": "carlos.martin@example.com",
@@ -155,14 +155,14 @@
       "provincia": "Bizkaia",
       "municipio": "Getxo",
       "historico": true,
-      "tipo_cliente": "empresa",
-      "lopd": false,
+      "tipoCliente": "empresa",
+      "lopd": true,
       "password": "",
       "id": "0fb8"
     },
     {
       "dni": "78945612K",
-      "fecha_alta": "29/12/2021",
+      "fecha_alta": "2025-11-29",
       "nombre": "Ana",
       "apellidos": "López Fernández",
       "email": "ana.lopez@example.com",
@@ -171,7 +171,7 @@
       "provincia": "Madrid",
       "municipio": "Getafe",
       "historico": false,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "particular",
       "lopd": true,
       "password": "",
       "id": "4043"
@@ -187,7 +187,7 @@
       "provincia": "Barcelona",
       "municipio": "Terrassa",
       "historico": true,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "empresa",
       "lopd": false,
       "password": "",
       "id": "8769"
@@ -204,13 +204,13 @@
       "municipio": "Écija",
       "historico": false,
       "lopd": true,
-      "tipo_cliente": "particular",
+      "tipoCliente": "particular",
       "password": "",
       "id": "2fbe"
     },
     {
       "dni": "Y1234567X",
-      "fecha_alta": "21/09/2023",
+      "fecha_alta": "2025-12-05",
       "nombre": "María",
       "apellidos": "Gómez Rodríguez",
       "email": "maria.gomez@example.com",
@@ -220,7 +220,7 @@
       "municipio": "Gandía",
       "historico": true,
       "lopd": true,
-      "tipo_cliente": "particular",
+      "tipoCliente": "empresa",
       "password": "",
       "id": "2538"
     },
@@ -236,13 +236,13 @@
       "municipio": "Marbella",
       "historico": false,
       "lopd": false,
-      "tipo_cliente": "particular",
+      "tipoCliente": "particular",
       "password": "",
       "id": "aec2"
     },
     {
       "dni": "X4567891E",
-      "fecha_alta": "14/01/2022",
+      "fecha_alta": "2021-01-21",
       "nombre": "Ana",
       "apellidos": "Fernández López",
       "email": "ana.fernandez@example.com",
@@ -252,13 +252,13 @@
       "municipio": "Móstoles",
       "historico": false,
       "lopd": true,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "particular",
       "password": "",
       "id": "8d42"
     },
     {
       "dni": "Y2345678Z",
-      "fecha_alta": "09/03/2023",
+      "fecha_alta": "2025-02-04",
       "nombre": "Carlos",
       "apellidos": "Martínez Sánchez",
       "email": "carlos.martinez@example.com",
@@ -267,8 +267,8 @@
       "provincia": "Barcelona",
       "municipio": "Sabadell",
       "historico": true,
-      "lopd": false,
-      "tipo_cliente": "empresa",
+      "lopd": true,
+      "tipoCliente": "empresa",
       "password": "",
       "id": "d814"
     },
@@ -284,7 +284,7 @@
       "municipio": "Dos Hermanas",
       "historico": false,
       "lopd": true,
-      "tipo_cliente": "particular",
+      "tipoCliente": "particular",
       "password": "",
       "id": "4a73"
     },
@@ -300,13 +300,13 @@
       "municipio": "Torrella",
       "historico": true,
       "lopd": true,
-      "tipo_cliente": "empresa",
+      "tipoCliente": "particular",
       "password": "",
       "id": "5447"
     },
     {
       "dni": "87654321X",
-      "fecha_alta": "17/12/2023",
+      "fecha_alta": "2018-02-25",
       "nombre": "Luis",
       "apellidos": "López Martín",
       "email": "luis.lopez@example.com",
@@ -315,14 +315,14 @@
       "provincia": "Málaga",
       "municipio": "Antequera",
       "historico": false,
-      "lopd": false,
-      "tipo_cliente": "empresa",
+      "lopd": true,
+      "tipoCliente": "empresa",
       "password": "",
       "id": "4ef9"
     },
     {
       "dni": "X3456789G",
-      "fecha_alta": "05/05/2024",
+      "fecha_alta": "2025-11-02",
       "nombre": "Isabel",
       "apellidos": "Martín Pérez",
       "email": "isabel.martin@example.com",
@@ -331,8 +331,8 @@
       "provincia": "Zaragoza",
       "municipio": "Ejea de los Caballeros",
       "historico": true,
-      "lopd": false,
-      "tipo_cliente": "particular",
+      "lopd": true,
+      "tipoCliente": "particular",
       "password": "",
       "id": "3617"
     },
@@ -346,9 +346,10 @@
       "direccion": "Calle García 12",
       "provincia": "Albacete",
       "municipio": "Alatoz",
-      "tipo_cliente": "particular",
+      "tipoCliente": "particular",
       "historico": false,
-      "fecha_alta": ""
+      "fecha_alta": "2001-02-11",
+      "lopd": true
     },
     {
       "id": "c839",
@@ -360,9 +361,9 @@
       "direccion": "Full House",
       "provincia": "Barcelona",
       "municipio": "Ullastrell",
-      "fecha_alta": "",
-      "historico": true,
-      "tipo_cliente": "particular",
+      "fecha_alta": "2025-11-12",
+      "historico": false,
+      "tipoCliente": "empresa",
       "lopd": true,
       "password": "",
       "tipo": "user"
@@ -377,8 +378,8 @@
       "direccion": "c/ areas numero 10",
       "provincia": "Álava",
       "municipio": "Añana",
-      "fecha_alta": "2003-09-22",
-      "tipo_cliente": "empresa",
+      "fecha_alta": "2025-11-28",
+      "tipoCliente": "particular",
       "historico": true,
       "lopd": true
     }
@@ -401,12 +402,6 @@
       "titulo": "La UE dando palos de ciego en el mundo del motor",
       "contenido": "A pesar del firme respaldo de países como España y Francia a la meta de 2035 para prohibir la venta de coches nuevos con motores de combustión interna en la Unión Europea, Alemania ha impulsado una revisión de esta normativa ante la presión de los fabricantes de automóviles. Esta directiva forma parte del Pact Verde Europeo y pretende acelerar el fin de los combustibles fósiles en el transporte.",
       "fecha": "2025-10-24"
-    },
-    {
-      "id": "4",
-      "titulo": "Noticia de Prueba",
-      "contenido": "Estoy escribiendo hasta 128 caracteres para probar a ver a ver a ver",
-      "fecha": "2025-11-06"
     }
   ],
   "empleados": [
@@ -441,9 +436,9 @@
     {
       "id": "5",
       "nombre": "Berto Martínez",
-      "puesto": "Gerente",
+      "puesto": "Diseñador/a",
       "email": "juan.martinez@empresa.com",
-      "historico": true
+      "historico": false
     }
   ],
   "coches": [
@@ -623,7 +618,7 @@
     {
       "id": "2",
       "nombre": "Skyline GTR",
-      "matricula": "1122ARS",
+      "matricula": "1122ARD",
       "tipo": "Deportivo",
       "dueno": "Diego Curras",
       "combustible": "Diesel",
@@ -639,17 +634,6 @@
       "combustible": "Gasolina",
       "dueno": "Diego Curras",
       "marca": "Nissan",
-      "roto": false,
-      "itv": false
-    },
-    {
-      "id": "4",
-      "nombre": "Perezoso",
-      "matricula": "1540FHJ",
-      "dueno": "1540FHJ",
-      "tipo": "Turismo",
-      "marca": "Nissan",
-      "combustible": "Diesel",
       "roto": false,
       "itv": false
     }

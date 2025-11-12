@@ -1,10 +1,11 @@
 <template>
-  <div class="container-fluid p-3">
+  <div class="container my-4 p-4 border rounded-4 shadow-lg bg-white">
     <h4
-      class="mb-3 text-center bg-`primary-subtle border bg-primary bg-opacity-25 text-primary rounded"
+      class="text-center mb-4 fw-semibold text-primary border-bottom pb-2 mt-2"
     >
       <i class="bi bi-car-front me-2"></i>Venta de Coches
     </h4>
+
     <div class="row">
       <div
         class="col-sm-6 col-md-4 mb-4"
@@ -24,25 +25,23 @@
             <p class="card-text fw-bold mt-auto">
               € {{ coche.precio.toLocaleString() }}
             </p>
-            <button class="btn btn-primary mt-2" :disabled="!coche.stock">
+            <button class="btn btn-primary mt-3 w-100" :disabled="!coche.stock">
               {{ coche.stock ? "Comprar" : "Fuera de Stock" }}
             </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- Navegación de página-->
-    <div class="d-flex justify-content-center my-3">
+
+    <div class="d-flex justify-content-center align-items-center my-3">
       <button
-        class="btn btn-outline-primary btn-sm me-2 rounded-0 border-1 shadow-none"
+        class="btn btn-outline-primary btn-sm rounded-0 border-1 shadow-none me-2"
         @click="beforePagina"
         :disabled="currentPage <= 1"
       >
         <i class="bi bi-chevron-left"></i>
       </button>
-      <span class="mx-3 align-self-center text-muted"
-        >Página {{ currentPage }}</span
-      >
+      <span class="text-muted mx-3">Página {{ currentPage }}</span>
       <button
         class="btn btn-outline-primary btn-sm rounded-0 border-1 shadow-none"
         @click="nextPagina"
@@ -53,6 +52,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import { onMounted, ref, computed } from "vue";
 import { getCoches } from "../api/coches";

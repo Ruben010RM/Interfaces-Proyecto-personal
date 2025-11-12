@@ -1,74 +1,86 @@
 <template>
-  <div class="container-fluid my-1 p-3 border rounded-3 shadow-sm bg-light">
+  <div class="container-fluid my-4 p-4 border rounded-4 shadow-lg bg-white">
     <!-- Título principal -->
-    <h4
-      class="text-center mx-2 my-1 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
-    >
+    <h4 class="text-center mb-4 fw-semibold text-primary border-bottom pb-2">
       <i class="bi bi-person-gear me-2"></i>Lista de Coches
     </h4>
 
-    <!-- Botón para limpiar formulario -->
-    <div class="d-flex justify-content-end">
-      <button
-        type="button"
-        class="btn border border-primary border-2 rounded-0 text-primary shadow-none mt-2 me-2"
-        style="--bs-btn-hover-bg: var(--bs-primary-bg-subtle)"
-        @click="limpiarPagina"
-        title="Limpiar formulario"
-      >
-        <i class="bi bi-arrow-counterclockwise"></i>
-      </button>
-    </div>
-
-    <!-- Formulario para añadir o modificar modelo -->
-    <form @submit.prevent="guardarModelo" class="mb-4">
-      <div class="row g-3 align-items-end">
-        <!-- Campo de nombre -->
-        <div class="col-md-4">
-          <label for="nombre" class="form-label">Nombre</label>
+    <!-- Formulario -->
+    <form
+      @submit.prevent="guardarModelo"
+      class="p-3 bg-light rounded-3 border shadow-sm"
+    >
+      <!-- Matrícula con botón lupa a la derecha -->
+      <div class="row g-3 mb-3 align-items-center">
+        <div class="col-md-2">
+          <label for="matricula" class="form-label fw-medium">Matrícula</label>
           <input
             type="text"
-            class="form-control"
+            id="matricula"
+            class="form-control form-control-sm shadow-none"
+            placeholder="Ej: 1234ABC"
+            pattern="[0-9]{4}[A-Za-z]{3}"
+            :disabled="editando"
+            v-model="nuevoModelo.matricula"
+            required
+          />
+        </div>
+        <div class="col-md-1 d-flex align-items-end mt-5">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm shadow-sm"
+            @click="buscarModeloPorMatricula(nuevoModelo.matricula)"
+          >
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+        <!-- Botón limpiar arriba derecha -->
+        <div class="col-md-9 justify-content-end d-flex">
+          <button
+            type="button"
+            class="btn btn-outline-primary shadow-sm"
+            @click="limpiarPagina"
+            title="Limpiar formulario"
+          >
+            <i class="bi bi-arrow-counterclockwise"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Resto campos en filas -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="nombre" class="form-label fw-medium">Nombre</label>
+          <input
+            type="text"
             id="nombre"
+            class="form-control form-control-sm shadow-none"
             @blur="capitalizarTexto('nombre')"
             v-model="nuevoModelo.nombre"
             required
           />
         </div>
 
-        <!-- Campo de matricula -->
-        <div class="col-md-4">
-          <label for="matricula" class="form-label">Matricula: </label>
+        <div class="col-md-6">
+          <label for="dueno" class="form-label fw-medium">Dueño</label>
           <input
             type="text"
-            class="form-control"
-            id="matricula"
-            pattern="[0-9]{4}[A-Za-z]{3}"
-            v-model="nuevoModelo.matricula"
-            required
-          />
-        </div>
-      </div>
-      <div class="row g-3 align-items-end">
-        <!-- Campo de Dueño -->
-        <div class="col-md-4">
-          <label for="dueno" class="form-label">Dueño</label>
-          <input
-            type="text"
-            class="form-control"
             id="dueno"
+            class="form-control form-control-sm shadow-none"
             @blur="capitalizarTexto('dueno')"
             v-model="nuevoModelo.dueno"
             required
           />
         </div>
+      </div>
 
-        <div class="col-md-4">
-          <label for="tipo" class="form-label">Tipo</label>
+      <div class="row g-3 mt-2">
+        <div class="col-md-6">
+          <label for="tipo" class="form-label fw-medium">Tipo</label>
           <select
             id="tipo"
             v-model="nuevoModelo.tipo"
-            class="form-select"
+            class="form-select form-select-sm shadow-none"
             required
           >
             <option disabled value="">Seleccione un tipo</option>
@@ -81,123 +93,146 @@
             </option>
           </select>
         </div>
-        <div class="row g-3 align-items-end">
-          <div class="col-md-4">
-            <label for="marca" class="form-label">Marca</label>
-            <select
-              id="marca"
-              v-model="nuevoModelo.marca"
-              class="form-select"
-              required
+
+        <div class="col-md-6">
+          <label for="marca" class="form-label fw-medium">Marca</label>
+          <select
+            id="marca"
+            v-model="nuevoModelo.marca"
+            class="form-select form-select-sm shadow-none"
+            required
+          >
+            <option disabled value="">Seleccione una marca</option>
+            <option
+              v-for="opcion in opcionesMarca"
+              :key="opcion"
+              :value="opcion"
             >
-              <option disabled value="">Seleccione una marca</option>
-              <option
-                v-for="opcion in opcionesMarca"
-                :key="opcion"
-                :value="opcion"
-              >
-                {{ opcion }}
-              </option>
-            </select>
+              {{ opcion }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mt-3 g-3 align-items-center">
+        <!-- Columna izquierda: radio buttons centrados -->
+        <div class="col-md-6 d-flex justify-content-center gap-3">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Diesel"
+              v-model="nuevoModelo.combustible"
+              id="diesel"
+            />
+            <label class="form-check-label" for="diesel">Diesel</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Gasolina"
+              v-model="nuevoModelo.combustible"
+              id="gasolina"
+            />
+            <label class="form-check-label" for="gasolina">Gasolina</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              value="Eléctrico"
+              v-model="nuevoModelo.combustible"
+              id="electrico"
+            />
+            <label class="form-check-label" for="electrico">Eléctrico</label>
+          </div>
+        </div>
+
+        <!-- Columna derecha: checkbox ITV at right -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              id="itv"
+              v-model="nuevoModelo.itv"
+              class="form-check-input"
+            />
+            <label for="itv" class="form-check-label">ITV</label>
           </div>
         </div>
       </div>
-      <div
-        class="d-flex justify-content-center align-items-center mt-2 me-2 gap-5"
-      >
-        <label for="combustible1"
-          >Diesel:
-          <input
-            type="radio"
-            v-model="nuevoModelo.combustible"
-            value="Diesel"
-            class="form-input"
-        /></label>
-        <label for="combustible2"
-          >Gasolina:
-          <input
-            type="radio"
-            v-model="nuevoModelo.combustible"
-            value="Gasolina"
-            class="form-input"
-        /></label>
-        <label for="combustible3"
-          >Eléctrico:
-          <input
-            type="radio"
-            v-model="nuevoModelo.combustible"
-            value="Eléctrico"
-            class="form-input"
-        /></label>
-      </div>
-      <div
-        class="form-check d-flex justify-content-center align-items-center mt-2 me-2"
-      >
-        <label for="ITV"
-          >ITV
+
+      <div class="d-flex justify-content-end align-items-center mt-3">
+        <div class="form-check form-switch">
           <input
             type="checkbox"
-            v-model="nuevoModelo.itv"
+            id="roto"
+            v-model="mostrarRoto"
             class="form-check-input"
-        /></label>
+            @change="cargarModelos"
+          />
+          <label for="roto" class="form-check-label">Rotos</label>
+        </div>
       </div>
-      <!-- Botón de acción: Añadir o Modificar -->
-      <button type="submit" class="btn btn-primary mt-3">
-        {{ editando ? "Modificar" : "Añadir" }}
-      </button>
+
+      <div class="d-flex justify-content-center mt-4">
+        <button type="submit" class="btn btn-primary px-4 shadow-sm">
+          {{ editando ? "Modificar" : "Añadir" }}
+        </button>
+      </div>
     </form>
 
-    <!-- Tabla que muestra la lista de empleados cargados -->
-    <table
-      class="table table-bordered table-striped table-hover table-sm align-middle table-responsive"
-    >
-      <thead class="thead-dark table-primary text-center">
-        <tr>
-          <th>Nombre</th>
-          <th>Matrícula</th>
-          <th>Dueño</th>
-          <th>Tipo</th>
-          <th>Marca</th>
-          <th>Combustible</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="modelo in modelos" :key="modelo.id">
-          <td>{{ modelo.nombre }}</td>
-          <td>{{ modelo.matricula }}</td>
-          <td>{{ modelo.dueno }}</td>
-          <td>{{ modelo.tipo }}</td>
-          <td>{{ modelo.marca }}</td>
-          <td>{{ modelo.combustible }}</td>
-          <td class="align-middle text-center">
-            <!-- Botón para eliminar un modelo -->
-            <button
-              class="btn btn-danger btn-sm border-0 ms-4 me-2 shadow-none rounded-0"
-              @click="borrarModelo(modelo.id)"
-            >
-              <i class="bi bi-trash"></i>
-            </button>
-
-            <!-- Botón para editar un modelo -->
-            <button
-              class="btn btn-warning btn-sm shadow-none rounded-0"
-              @click="editarModelo(modelo.id)"
-            >
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button
-              v-if="modelo.roto === true"
-              @click="rotoModelo(modelo)"
-              class="btn btn-secondary btn-sm ms-2 border-0 shadow-none rounded-0"
-              title="Activar cliente"
-            >
-              <i class="bi bi-unlock"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- Tabla -->
+    <div class="table-responsive mt-4">
+      <table
+        class="table table-hover table-bordered align-middle text-center table-striped"
+      >
+        <thead class="table-primary">
+          <tr>
+            <th>Nombre</th>
+            <th>Matrícula</th>
+            <th>Dueño</th>
+            <th>Tipo</th>
+            <th>Marca</th>
+            <th>Combustible</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="modelo in modelos" :key="modelo.id">
+            <td>{{ modelo.nombre }}</td>
+            <td>{{ modelo.matricula }}</td>
+            <td>{{ modelo.dueno }}</td>
+            <td>{{ modelo.tipo }}</td>
+            <td>{{ modelo.marca }}</td>
+            <td>{{ modelo.combustible }}</td>
+            <td>
+              <button
+                class="btn btn-sm btn-danger me-2 shadow-none"
+                @click="borrarModelo(modelo.id)"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+              <button
+                class="btn btn-sm btn-warning me-2 shadow-none"
+                @click="editarModelo(modelo.id)"
+              >
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button
+                v-if="modelo.roto"
+                class="btn btn-sm btn-secondary shadow-none"
+                @click="rotoModelo(modelo)"
+                title="Activar cliente"
+              >
+                <i class="bi bi-unlock"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script setup>
@@ -208,6 +243,7 @@ import {
   addModelo,
   deleteModelo,
   updateModelo,
+  getModeloPorMatricula,
 } from "../api/modelos";
 
 const modelos = ref([]);
@@ -222,6 +258,8 @@ const nuevoModelo = ref({
   itv: false,
 });
 
+const mostrarRoto = ref(false);
+
 async function cargarModelos() {
   try {
     Swal.fire({
@@ -230,7 +268,7 @@ async function cargarModelos() {
       showConfirmButton: false,
       timer: 1500,
     });
-    modelos.value = await getModelo();
+    modelos.value = await getModelo(mostrarRoto.value);
   } catch (error) {
     console.error("Fallo al cargar los datos de la bbdd", error);
   }
@@ -252,6 +290,23 @@ async function guardarModelo() {
   ) {
     alert("Por favor rellena los campos solicitados");
     return;
+  }
+  // Validar duplicados solo si estás creando (no si editando)
+  if (!editando.value) {
+    const duplicado = modelos.value.find(
+      (modelo) =>
+        modelo.matricula.toUpperCase() ===
+        nuevoModelo.value.matricula.toUpperCase()
+    );
+    if (duplicado) {
+      Swal.fire({
+        icon: "error",
+        title: "Matrícula duplicada",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
   }
 
   const result = await Swal.fire({
@@ -297,7 +352,7 @@ async function guardarModelo() {
       id: String(modelos.value.length > 0 ? modelos.value.length + 1 : 1),
       nombre: nuevoModelo.value.nombre,
       matricula: nuevoModelo.value.matricula.toUpperCase(),
-      dueno: nuevoModelo.value.matricula,
+      dueno: nuevoModelo.value.dueno,
       tipo: nuevoModelo.value.tipo,
       marca: nuevoModelo.value.marca,
       combustible: nuevoModelo.value.combustible,
@@ -387,6 +442,54 @@ const capitalizarTexto = (propiedad) => {
         palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()
     )
     .join(" ");
+};
+
+const buscarModeloPorMatricula = async (matricula) => {
+  if (!matricula || matricula.trim() === "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Debe introducir una matricula antes de buscar.",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+    return;
+  }
+
+  try {
+    const modelo = await getModeloPorMatricula(matricula.trim().toUpperCase());
+    console.log(modelo.value);
+    if (!modelo) {
+      Swal.fire({
+        icon: "info",
+        title: "Cliente no encontrado",
+        text: "No existe ningún cliente con ese DNI.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+      return;
+    }
+
+    // ✅ Cargar los datos en el formulario
+    nuevoModelo.value = { ...modelo };
+    editando.value = true;
+    modeloEditandoId.value = modelo.id;
+
+    Swal.fire({
+      icon: "success",
+      title: "Modelo encontrado y cargado",
+      timer: 1500,
+      showConfirmButton: false,
+    });
+  } catch (error) {
+    console.error("Error buscando cliente por DNI:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error al buscar cliente",
+      text: "Verifique la conexión o contacte con el administrador.",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+  }
 };
 </script>
 <style scoped></style>

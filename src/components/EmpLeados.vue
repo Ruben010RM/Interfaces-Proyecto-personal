@@ -1,48 +1,47 @@
 <template>
-  <div class="container-fluid my-1 p-3 border rounded-3 shadow-sm bg-light">
+  <div class="container-fluid my-4 p-4 border rounded-4 shadow-lg bg-white">
     <!-- Título principal -->
-    <h4
-      class="text-center mx-2 my-1 bg-`primary-subtle py-1 border bg-primary bg-opacity-25 text-primary p-3 rounded"
-    >
+    <h4 class="text-center mb-4 fw-semibold text-primary border-bottom pb-2">
       <i class="bi bi-person-gear me-2"></i>Lista de Empleados
     </h4>
 
-    <!-- Botón para limpiar formulario -->
-    <div class="d-flex justify-content-end">
-      <button
-        type="button"
-        class="btn border border-primary border-2 rounded-0 text-primary shadow-none mt-2 me-2"
-        style="--bs-btn-hover-bg: var(--bs-primary-bg-subtle)"
-        @click="limpiarPagina"
-        title="Limpiar formulario"
-      >
-        <i class="bi bi-arrow-counterclockwise"></i>
-      </button>
-    </div>
+    <!-- Formulario -->
+    <form
+      @submit.prevent="agregarEmpleado"
+      class="p-4 bg-light rounded-3 border shadow-sm mb-4"
+    >
+      <!-- Contenedor flex para botón arriba a la derecha -->
+      <div class="d-flex justify-content-end">
+        <button
+          type="button"
+          class="btn btn-outline-primary border-2 shadow-sm"
+          @click="limpiarPagina"
+          title="Limpiar formulario"
+        >
+          <i class="bi bi-arrow-counterclockwise"></i>
+        </button>
+      </div>
 
-    <!-- Formulario para añadir o modificar empleados -->
-    <form @submit.prevent="agregarEmpleado" class="mb-4">
-      <div class="row g-3 align-items-end">
-        <!-- Campo de nombre -->
-        <div class="col-md-4">
-          <label for="nombre" class="form-label">Nombre</label>
+      <!-- Resto campos formulario -->
+      <div class="row g-3 align-items-end gap-3">
+        <div class="col-md-3">
+          <label for="nombre" class="form-label fw-medium">Nombre</label>
           <input
             type="text"
-            class="form-control"
             id="nombre"
+            class="form-control form-control-sm shadow-none"
             @blur="capitalizarTexto('nombre')"
             v-model="nuevoEmpleado.nombre"
             required
           />
         </div>
 
-        <!-- Selector de puesto -->
-        <div class="col-md-4">
-          <label for="puesto" class="form-label">Puesto</label>
+        <div class="col-md-3">
+          <label for="puesto" class="form-label fw-medium">Puesto</label>
           <select
             id="puesto"
             v-model="nuevoEmpleado.puesto"
-            class="form-select"
+            class="form-select form-select-sm shadow-none"
             required
           >
             <option disabled value="">Seleccione un puesto</option>
@@ -56,85 +55,91 @@
           </select>
         </div>
 
-        <!-- Campo de email -->
         <div class="col-md-4">
-          <label for="email" class="form-label">Email</label>
+          <label for="email" class="form-label fw-medium">Email</label>
           <input
             type="email"
-            class="form-control"
             id="email"
             v-model="nuevoEmpleado.email"
+            class="form-control form-control-sm shadow-none"
             required
           />
         </div>
       </div>
+
       <div
-        class="form-switch form-check d-flex justify-content-end align-items-center mt-2 me-2"
+        class="form-switch form-check d-flex justify-content-between align-items-center mt-3"
       >
-        <label for="historico"
-          >Historico
+        <div>
           <input
             type="checkbox"
+            id="historico"
             v-model="mostrarHistorico"
             class="form-check-input"
             @change="cargarEmpleados"
-        /></label>
+          />
+          <label for="historico" class="form-check-label">Histórico</label>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary px-4 shadow-sm"
+          :disabled="botonDeshabilitado"
+        >
+          {{ editando ? "Modificar" : "Añadir" }}
+        </button>
       </div>
-      <!-- Botón de acción: Añadir o Modificar -->
-      <button
-        type="submit"
-        class="btn btn-primary mt-3"
-        :disabled="botonDeshabilitado"
-      >
-        {{ editando ? "Modificar" : "Añadir" }}
-      </button>
     </form>
 
-    <!-- Tabla que muestra la lista de empleados cargados -->
-    <table
-      class="table table-bordered table-striped table-hover table-sm align-middle table-responsive"
-    >
-      <thead class="thead-dark table-primary text-center">
-        <tr>
-          <th>Nombre</th>
-          <th>Puesto</th>
-          <th>Email</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="empleado in empleados" :key="empleado.id">
-          <td>{{ empleado.nombre }}</td>
-          <td>{{ empleado.puesto }}</td>
-          <td class="text-center">{{ empleado.email }}</td>
-          <td class="align-middle text-center">
-            <!-- Botón para eliminar un empleado -->
-            <button
-              class="btn btn-danger btn-sm border-0 ms-4 me-2 shadow-none rounded-0"
-              @click="borrarEmpleado(empleado.id)"
-            >
-              <i class="bi bi-trash"></i>
-            </button>
+    <!-- Tabla -->
+    <div class="table-responsive mt-4">
+      <table
+        class="table table-bordered table-striped table-hover align-middle text-center shadow-sm"
+      >
+        <thead class="table-primary">
+          <tr>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
 
-            <!-- Botón para editar un empleado -->
-            <button
-              class="btn btn-warning btn-sm shadow-none rounded-0"
-              @click="editarEmpleado(empleado.id)"
-            >
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button
-              v-if="empleado.historico === true"
-              @click="activarEmpleado(empleado)"
-              class="btn btn-secondary btn-sm ms-2 border-0 shadow-none rounded-0"
-              title="Activar cliente"
-            >
-              <i class="bi bi-unlock"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr v-for="empleado in empleados" :key="empleado.id">
+            <td>{{ empleado.nombre }}</td>
+            <td>{{ empleado.puesto }}</td>
+            <td>{{ empleado.email }}</td>
+            <td class="align-middle">
+              <button
+                class="btn btn-sm btn-danger me-2 shadow-sm"
+                @click="borrarEmpleado(empleado.id)"
+                title="Eliminar empleado"
+              >
+                <i class="bi bi-trash"></i>
+              </button>
+
+              <button
+                class="btn btn-sm btn-warning text-white me-2 shadow-sm"
+                @click="editarEmpleado(empleado.id)"
+                title="Editar empleado"
+              >
+                <i class="bi bi-pencil"></i>
+              </button>
+
+              <button
+                v-if="empleado.historico === true"
+                class="btn btn-sm btn-secondary shadow-sm"
+                @click="activarEmpleado(empleado)"
+                title="Activar empleado"
+              >
+                <i class="bi bi-unlock"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
