@@ -205,8 +205,8 @@ async function cargarEmpleados() {
 }
 
 /* Ejecutar carga inicial al montar el componente */
-onMounted(() => {
-  cargarEmpleados();
+onMounted(async () => {
+  await cargarEmpleados();
 });
 
 /* Añadir o modificar un empleado existente */
@@ -249,8 +249,8 @@ async function agregarEmpleado() {
       await updateEmpleado(
         empleadoEditando.value,
         nuevoEmpleado.value
-      ); /*Como los datos se cargaron en el formulario, 
-      simplemente cambimos lo q queremos y ya se ve reflejado en el nuevoEmpleado.value al estar asociado con 
+      ); /*Como los datos se cargaron en el formulario,
+      simplemente cambimos lo q queremos y ya se ve reflejado en el nuevoEmpleado.value al estar asociado con
       v-models y ser un elemento reactivo*/
       Swal.fire({
         icon: "success",
@@ -305,7 +305,7 @@ async function agregarEmpleado() {
 
 /* Eliminar un empleado con confirmación,
 la funcion deleteEmpleado viene de empleados.js
-y como es async, tenemos q volver tambien asyn aquella que 
+y como es async, tenemos q volver tambien asyn aquella que
 lo envuelve*/
 async function borrarEmpleado(id) {
   try {

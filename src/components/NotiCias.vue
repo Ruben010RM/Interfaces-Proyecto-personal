@@ -42,7 +42,7 @@
           </div>
           <div class="text-center mt-3">
             <button type="submit" class="btn btn-primary px-4 shadow-sm">
-              <i class="bi bi-send me-1"></i> Publicar noticia
+              <i class="bi bi-send me-1"></i> Publicar
             </button>
           </div>
         </form>

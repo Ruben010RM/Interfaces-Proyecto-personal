@@ -21,6 +21,7 @@
             placeholder="Ej: 1234ABC"
             pattern="[0-9]{4}[A-Za-z]{3}"
             :disabled="editando"
+            @blur="allMayus('matricula')"
             v-model="nuevoModelo.matricula"
             required
           />
@@ -273,7 +274,7 @@ async function cargarModelos() {
     console.error("Fallo al cargar los datos de la bbdd", error);
   }
 }
-const opcionesMarca = ["Citroen", "Mazda", "Nissan", "Toyota"];
+const opcionesMarca = ["Citroen", "Mazda", "Nissan", "Toyota", "Renault"];
 const opcionesTipo = ["Deportivo", "Turismo", "Todoterreno", "Camión"];
 const editando = ref(false);
 const modeloEditandoId = ref("");
@@ -349,7 +350,20 @@ async function guardarModelo() {
     }
   } else {
     const modeloNuevo = {
-      id: String(modelos.value.length > 0 ? modelos.value.length + 1 : 1),
+      id: String(
+        // Si hay elementos en el array modelos...
+        modelos.value.length > 0
+          ? // Reducimos el array para encontrar el mayor id numérico existente
+            modelos.value.reduce(
+              // Función reductora: compara el acumulador 'max' con el id actual convertido a número y devuelve el mayor
+              (max, modelo) => Math.max(max, Number(modelo.id)),
+              0 // Valor inicial para el máximo es 0 (si el array está vacío)
+            ) +
+              // Sumamos 1 al máximo para obtener el nuevo id único
+              1
+          : // Si el array está vacío, el primer id será 1
+            1
+      ),
       nombre: nuevoModelo.value.nombre,
       matricula: nuevoModelo.value.matricula.toUpperCase(),
       dueno: nuevoModelo.value.dueno,
@@ -444,6 +458,11 @@ const capitalizarTexto = (propiedad) => {
     .join(" ");
 };
 
+const allMayus = (propiedad) => {
+  if (!nuevoModelo.value[propiedad]) return;
+  nuevoModelo.value[propiedad] = nuevoModelo.value[propiedad].toUpperCase();
+};
+
 const buscarModeloPorMatricula = async (matricula) => {
   if (!matricula || matricula.trim() === "") {
     Swal.fire({
@@ -492,4 +511,8 @@ const buscarModeloPorMatricula = async (matricula) => {
   }
 };
 </script>
-<style scoped></style>
+<style scoped>
+.container-fluid {
+  height: 84.7vh;
+}
+</style>
