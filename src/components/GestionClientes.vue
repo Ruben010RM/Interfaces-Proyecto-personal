@@ -45,7 +45,9 @@
         <div
           class="col-md-2 ms-4 d-flex align-items-center justify-content-end"
         >
-          <label for="fecha_alta" class="form-label me-2 mb-0 text-nowrap fw-medium"
+          <label
+            for="fecha_alta"
+            class="form-label me-2 mb-0 text-nowrap fw-medium"
             >Fecha de Alta:</label
           >
           <input
@@ -61,7 +63,9 @@
         <div
           class="col-md-3 ms-5 d-flex align-items-center justify-content-center border rounded"
         >
-          <label for="tipo_cliente" class="form-label me-2 mb-0 text-nowrap fw-medium me-3"
+          <label
+            for="tipo_cliente"
+            class="form-label me-2 mb-0 text-nowrap fw-medium me-3"
             >Tipo de Cliente:</label
           ><input
             type="radio"
@@ -111,7 +115,9 @@
 
         <!-- Apellidos -->
         <div class="col-md-6 d-flex align-items-center ms-5">
-          <label for="apellidos" class="form-label me-4 mb-0 text-nowrap fw-medium"
+          <label
+            for="apellidos"
+            class="form-label me-4 mb-0 text-nowrap fw-medium"
             >Apellidos:</label
           >
           <input
@@ -150,7 +156,9 @@
 
         <!-- Móvil -->
         <div class="col-md-3 d-flex align-items-center gap-4">
-          <label for="movil" class="form-label me-4 ms-5 mb-0 text-nowrap fw-medium"
+          <label
+            for="movil"
+            class="form-label me-4 ms-5 mb-0 text-nowrap fw-medium"
             >Móvil:</label
           >
           <input
@@ -168,7 +176,9 @@
       <div class="mb-3 row g-3 align-items-center">
         <!-- Dirección -->
         <div class="col-md-5 d-flex align-items-center">
-          <label for="direccion" class="form-label mb-0 w-25 text-nowrap fw-medium"
+          <label
+            for="direccion"
+            class="form-label mb-0 w-25 text-nowrap fw-medium"
             >Dirección:</label
           >
           <input
@@ -182,7 +192,9 @@
 
         <!-- Provincia -->
         <div class="col-md-3 d-flex align-items-center gap-3">
-          <label for="provincia" class="form-label me-2 ms-5 mb-0 text-nowrap fw-medium"
+          <label
+            for="provincia"
+            class="form-label me-2 ms-5 mb-0 text-nowrap fw-medium"
             >Provincia:</label
           >
           <select
@@ -200,7 +212,9 @@
 
         <!-- Municipio -->
         <div class="col-md-3 d-flex align-items-center">
-          <label for="municipio" class="form-label me-2 ms-4 mb-0 text-nowrap fw-medium"
+          <label
+            for="municipio"
+            class="form-label me-2 ms-4 mb-0 text-nowrap fw-medium"
             >Municipio:</label
           >
           <select
@@ -558,7 +572,15 @@ const eliminarCliente = async (movil) => {
     });
     return;
   }
-
+  if (!clienteAEliminar.historico) {
+    Swal.fire({
+      icon: "error",
+      title: "Cliente ya dado de Baja",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    return;
+  }
   // Pedir confirmación antes de eliminar
   const result = await Swal.fire({
     title: `¿Eliminar al cliente ${clienteAEliminar.nombre} ${clienteAEliminar.apellidos}?`,
