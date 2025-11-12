@@ -602,40 +602,5 @@
       "precio": 27000,
       "stock": false
     }
-  ],
-  "modelos": [
-    {
-      "id": "1",
-      "nombre": "Skyline GTR",
-      "matricula": "1111ARS",
-      "tipo": "Deportivo",
-      "dueno": "Diego Curras",
-      "combustible": "Eléctrico",
-      "marca": "Nissan",
-      "roto": false,
-      "itv": true
-    },
-    {
-      "id": "2",
-      "nombre": "Skyline GTR",
-      "matricula": "1122ARD",
-      "tipo": "Deportivo",
-      "dueno": "Diego Curras",
-      "combustible": "Diesel",
-      "marca": "Nissan",
-      "roto": true,
-      "itv": true
-    },
-    {
-      "id": "3",
-      "nombre": "Skyline GTR",
-      "matricula": "1111ABC",
-      "tipo": "Deportivo",
-      "combustible": "Gasolina",
-      "dueno": "Diego Curras",
-      "marca": "Nissan",
-      "roto": false,
-      "itv": false
-    }
   ]
 }

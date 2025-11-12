@@ -6,7 +6,7 @@ import AvisoLegal from "../components/AvisoLegal.vue";
 import PoliticaPrivacidad from "../components/PoliticaPrivacidad.vue";
 import CoChes from "../components/CoChes.vue";
 import EmpLeados from "../components/EmpLeados.vue";
-import MoDelos from "../components/MoDelos.vue";
+import ModeLos from "../components/ModeLos.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -52,8 +52,8 @@ const routes = [
   },
   {
     path: "/modelos",
-    name: "MoDelos",
-    component: MoDelos,
+    name: "ModeLos",
+    component: ModeLos,
   },
 ];
 
