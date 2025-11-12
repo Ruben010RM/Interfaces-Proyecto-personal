@@ -58,7 +58,9 @@
             'border border-2 border-primary': noticiaExpandida === noticia.id,
           }"
         >
-          <div class="card-body d-flex flex-column justify-content-between">
+          <div
+            class="card-body border rounded d-flex flex-column justify-content-between"
+          >
             <div>
               <div
                 class="d-flex justify-content-between align-items-start mb-2"

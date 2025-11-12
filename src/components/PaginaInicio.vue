@@ -57,7 +57,7 @@ const login = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 89.4vh; /* ocupa todo el alto visible */
+  height: 89.7vh; /* ocupa todo el alto visible */
   width: 100%;
   overflow: hidden;
 }

@@ -46,7 +46,8 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-3 d-flex align-items-center">
+
+        <div class="col-12 col-md-2 d-flex align-items-center">
           <label for="matricula" class="form-label mb-0 me-3 text-nowrap"
             >Matricula:</label
           >
@@ -57,7 +58,8 @@
             class="form-control rounded shadow-none border"
           />
         </div>
-        <div class="col-12 col-md-3 d-flex align-items-center">
+
+        <div class="col-12 col-md-2 d-flex align-items-center">
           <label for="marca" class="form-label mb-0 me-3 text-nowrap"
             >Marca:</label
           >
@@ -82,24 +84,24 @@
             required
           />
         </div>
-      </div>
 
-      <!-- FILA: Año, Kilómetros, Precio -->
-      <div class="row g-3 align-items-center mt-2">
-        <div class="col-12 col-md-1 d-flex align-items-center">
+        <div class="col-12 col-md-2 d-flex align-items-center">
           <label for="anio" class="form-label mb-0 me-3 text-nowrap"
             >Año:</label
           >
           <input
-            type="number"
+            type="text"
             id="anio"
             v-model="vehiculo.anio"
             class="form-control rounded shadow-none border"
             required
           />
         </div>
+      </div>
 
-        <div class="col-12 col-md-2 d-flex align-items-center">
+      <!-- FILA: Kilómetros, Precio, Combustible, Transmisión -->
+      <div class="row g-3 align-items-center mt-2">
+        <div class="col-12 col-md-3 d-flex align-items-center">
           <label for="kilometros" class="form-label mb-0 me-3 text-nowrap"
             >Kilómetros:</label
           >
@@ -124,47 +126,78 @@
             required
           />
         </div>
-      </div>
 
-      <!-- FILA: Combustible, Transmisión, Puertas, Potencia -->
-      <div class="row g-3 align-items-center mt-2">
-        <div class="col-12 col-md-4">
-          <label for="combustible" class="form-label">Combustible:</label>
+        <div class="col-12 col-md-2 d-flex align-items-center">
+          <label for="combustible" class="form-label mb-0 me-3 text-nowrap"
+            >Combustible:</label
+          >
           <select
             id="combustible"
             v-model="vehiculo.combustible"
             class="form-select rounded shadow-none border"
           >
             <option disabled value="">Seleccione</option>
-            <option>Gasolina</option>
-            <option>Diésel</option>
-            <option>Híbrido</option>
-            <option>GLP</option>
-            <option>Eléctrico</option>
+            <option
+              v-for="combustible in tiposCombustible"
+              :value="combustible"
+            >
+              {{ combustible }}
+            </option>
           </select>
         </div>
 
-        <div class="col-12 col-md-3">
-          <label for="transmision" class="form-label">Transmisión:</label>
-          <select
-            id="transmision"
-            v-model="vehiculo.transmision"
-            class="form-select rounded shadow-none border"
+        <div class="col-12 col-md-3 d-flex align-items-center">
+          <label for="transmision" class="form-label mb-0 me-3 text-nowrap"
+            >Transmisión:</label
           >
-            <option disabled value="">Seleccione</option>
-            <option>Manual</option>
-            <option>Automática</option>
-          </select>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="transmision-manual"
+              value="manual"
+              v-model="vehiculo.transmision"
+            />
+            <label class="form-check-label" for="transmision-manual"
+              >Manual</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              id="transmision-automatica"
+              value="automatica"
+              v-model="vehiculo.transmision"
+            />
+            <label class="form-check-label" for="transmision-automatica"
+              >Automática</label
+            >
+          </div>
         </div>
 
-        <div class="col-12 col-md-3">
-          <label for="potencia" class="form-label">Potencia (CV):</label>
+        <div class="col-12 col-md-2 d-flex align-items-center">
+          <label for="potencia" class="form-label mb-0 me-3 text-nowrap"
+            >Potencia (CV):</label
+          >
           <input
-            type="number"
+            type="text"
             id="potencia"
             v-model="vehiculo.potencia_cv"
             class="form-control rounded shadow-none border"
           />
+        </div>
+
+        <div class="col-12 col-md-2 d-flex align-items-center">
+          <label class="orm-label mb-0 me-3 text-nowrap">Estado:</label>
+          <select
+            v-model="vehiculo.estado"
+            class="form-select d-inline-block w-auto rounded shadow-none border"
+          >
+            <option value="disponible">Disponible</option>
+            <option value="vendido">Vendido</option>
+            <option value="reservado">Reservado</option>
+          </select>
         </div>
       </div>
 
@@ -181,7 +214,7 @@
           ></textarea>
         </div>
       </div>
-      <h6 class="text-center fw-semibold bg-primary-subtle py-1 rounded">
+      <h6 class="text-center bg-primary-subtle py-1 fw-semibold">
         <i class="bi bi-person me-2"></i>Cliente Ubicación
       </h6>
       <!-- FILA: Ubicación -->
@@ -193,7 +226,7 @@
             v-model="vehiculo.ubicacion.provincia"
             class="form-select rounded shadow-none border"
             @change="filtrarCiudades"
-          > 
+          >
             <option disabled value="">Seleccione provincia</option>
             <option v-for="prov in provincias" :key="prov.id" :value="prov.nm">
               {{ prov.nm }}
@@ -266,26 +299,22 @@
       </div>
 
       <!-- FILA: Estado y botón -->
-      <div class="d-flex align-items-center justify-content-between mt-3">
-        <div>
-          <label class="form-label me-2">Estado:</label>
-          <select
-            v-model="vehiculo.estado"
-            class="form-select d-inline-block w-auto rounded shadow-none border"
-          >
-            <option value="disponible">Disponible</option>
-            <option value="vendido">Vendido</option>
-            <option value="reservado">Reservado</option>
-          </select>
-        </div>
-
-        <div>
-          <button
-            type="submit"
-            class="btn btn-primary rounded border shadow-none px-4"
-          >
-            {{ editando ? "Modificar" : "Guardar" }}
-          </button>
+      <div class="row g-3 align-items-center mt-3">
+        <div class="col-12 d-flex align-items-center justify-content-center m">
+          <div>
+            <button
+              type="submit"
+              class="btn btn-primary rounded border shadow-none px-4 py-2"
+            >
+              {{ editando ? "Modificar" : "Guardar" }}
+            </button>
+            <button
+              type="submit"
+              class="btn btn-secondary rounded border shadow-none px-4 py-2 ms-2"
+            >
+              Eliminar
+            </button>
+          </div>
         </div>
       </div>
     </form>
@@ -305,6 +334,7 @@ const vehiculo = ref({
   matricula: "",
   combustible: "",
   transmision: "",
+  puertas: "",
   potencia_cv: "",
   descripcion: "",
   ubicacion: {
@@ -320,8 +350,8 @@ const vehiculo = ref({
   estado: "disponible",
 });
 
-const tiposVehiculo = ref(["coche", "moto", "furgoneta", "camión"]);
-const tiposCombustible = ref(["gasolina", "diésel", "híbrido", "eléctrico"]);
+const tiposVehiculo = ref(["Coche", "Moto", "Furgoneta", "Camión"]);
+const tiposCombustible = ref(["Gasolina", "Diésel", "Híbrido", "Eléctrico"]);
 
 const provincias = ref([
   { id: 1, nm: "A Coruña" },
@@ -344,4 +374,8 @@ const municipiosFiltrados = computed(() =>
   municipios.value.filter((m) => m.prov === vehiculo.value.ubicacion.provincia)
 );
 </script>
-<style></style>
+<style scoped>
+.container-fluid {
+  height: 84.59vh;
+}
+</style>

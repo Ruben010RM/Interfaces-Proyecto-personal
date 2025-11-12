@@ -59,7 +59,7 @@
           />
         </div>
         <div
-          class="col-md-3 ms-5 d-flex align-items-center justify-content-center border"
+          class="col-md-3 ms-5 d-flex align-items-center justify-content-center border rounded"
         >
           <label for="tipo_cliente" class="form-label me-2 mb-0 text-nowrap"
             >Tipo de Cliente:</label
@@ -249,7 +249,7 @@
       <div class="text-center">
         <button
           type="submit"
-          class="btn btn-primary border-0 shadow-none rounded-0"
+          class="btn btn-primary border-0 shadow-none rounded"
           :disabled="!nuevoCliente.lopd"
         >
           {{ editando ? "Modificar Cliente" : "Guardar Cliente" }}
@@ -614,7 +614,7 @@ const editarCliente = (movil) => {
   }
 
   nuevoCliente.value = { ...cliente, fecha_alta: fechaFormateada }; //Cargamos todos los datos del cliente
-  nuevoCliente.value.lopd = false; //Para que tenga que marcar el checkbox de nuevo
+  nuevoCliente.value.lopd = cliente.lopd; //Para que tenga que coja tambien su valor de lopd
   editando.value = true;
   filtrarMunicipios();
   nuevoCliente.value.municipio = cliente.municipio;
@@ -696,6 +696,7 @@ const buscarClientePorDNI = async (dni) => {
     // ✅ Cargar los datos en el formulario
     nuevoCliente.value = { ...cliente };
     nuevoCliente.value.fecha_alta = formatearFechaParaInput(cliente.fecha_alta);
+    nuevoCliente.value.lopd = cliente.lopd; //Para que tenga que coja tambien su valor de lopd
     editando.value = true;
 
     // Actualiza lista de municipios si cambia la provincia

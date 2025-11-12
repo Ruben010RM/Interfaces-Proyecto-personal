@@ -398,4 +398,8 @@ const activarEmpleado = async (empleado) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container-fluid {
+  height: 84.59vh;
+}
+</style>

@@ -82,7 +82,7 @@
     },
     {
       "dni": "Z2345678M",
-      "fecha_alta": "15/04/2023",
+      "fecha_alta": "2025-11-21",
       "nombre": "Javier",
       "apellidos": "Sánchez García",
       "email": "javier.sanchez@example.com",
@@ -92,7 +92,7 @@
       "municipio": "Calatayud",
       "historico": true,
       "tipoCliente": "empresa",
-      "lopd": false,
+      "lopd": true,
       "password": "",
       "id": "41cd"
     },
@@ -601,6 +601,41 @@
       "descripcion": "Híbrido eficiente y ecológico",
       "precio": 27000,
       "stock": false
+    }
+  ],
+  "modelos": [
+    {
+      "id": "1",
+      "nombre": "Skyline GTR",
+      "matricula": "1111ARS",
+      "tipo": "Deportivo",
+      "dueno": "Diego Curras",
+      "combustible": "Eléctrico",
+      "marca": "Nissan",
+      "roto": false,
+      "itv": true
+    },
+    {
+      "id": "2",
+      "nombre": "Skyline GTR",
+      "matricula": "1122ARD",
+      "tipo": "Deportivo",
+      "dueno": "Diego Curras",
+      "combustible": "Diesel",
+      "marca": "Nissan",
+      "roto": true,
+      "itv": true
+    },
+    {
+      "id": "3",
+      "nombre": "Skyline GTR",
+      "matricula": "1111ABC",
+      "tipo": "Deportivo",
+      "combustible": "Gasolina",
+      "dueno": "Diego Curras",
+      "marca": "Nissan",
+      "roto": false,
+      "itv": false
     }
   ]
 }

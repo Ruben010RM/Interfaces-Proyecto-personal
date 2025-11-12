@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-4 p-4 border rounded-4 shadow-lg bg-white">
+  <div class="container-fluid my-4 p-4 border rounded-4 shadow-lg bg-white">
     <h4
       class="text-center mb-4 fw-semibold text-primary border-bottom pb-2 mt-2"
     >

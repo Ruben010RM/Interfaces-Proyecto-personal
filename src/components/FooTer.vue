@@ -1,7 +1,7 @@
 <template>
   <footer class="navbar navbar-dark bg-primary position-sticky top-0">
     <div class="container">
-      <p class="mb-1">
+      <p class="mb-1 text-light">
         &copy; {{ new Date().getFullYear() }} MiSitio. Todos los derechos
         reservados.
       </p>
@@ -12,7 +12,7 @@
           >
         </li>
         <li class="list-inline-item">
-          <a href="#" class="text-light text-decoration-none"
+          <a href="/politicaprivacidad" class="text-light text-decoration-none"
             >Política de privacidad</a
           >
         </li>
